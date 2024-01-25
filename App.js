@@ -1,20 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import AppStartContext from "./Contexts/AppStartContext";
+import useTheme from "./hooks/useTheme";
+import "react-native-gesture-handler";
+import SideMenu from "./Components/SideMenu";
+import Home from "./Pages/Home";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    const themeData = useTheme();
+    return (
+        <AppStartContext.Provider value={themeData}>
+            <SafeAreaProvider>
+                <SideMenu></SideMenu>
+            </SafeAreaProvider>
+        </AppStartContext.Provider>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
